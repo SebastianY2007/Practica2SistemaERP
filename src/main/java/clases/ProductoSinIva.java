@@ -13,6 +13,6 @@ public class ProductoSinIva extends Producto {
 
     @Override
     public double calcularPrecioFinal() {
-        return getPrecio(); // No se aplica IVA
+        return getPrecio();
     }
 }
