@@ -1,6 +1,6 @@
 package clases;
 
-public class Producto {
+public abstract class Producto {
     private int codigo;
     private String nombre;
     private String descripcion;
@@ -17,53 +17,24 @@ public class Producto {
         this.stock = stock;
     }
 
-    public int getCodigo() {
-        return codigo;
-    }
+    // Métodos getters y setters
+    public int getCodigo() { return codigo; }
+    public void setCodigo(int codigo) { this.codigo = codigo; }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public double getPrecio() { return precio; }
+    public void setPrecio(double precio) { this.precio = precio; }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+    public int getStock() { return stock; }
+    public void setStock(int stock) { this.stock = stock; }
 
     @Override
     public String toString() {
@@ -76,4 +47,6 @@ public class Producto {
                 ", stock=" + stock +
                 '}';
     }
+
+    public abstract double calcularPrecioFinal();
 }
