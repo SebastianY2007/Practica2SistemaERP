@@ -121,13 +121,17 @@ public class Principal {
                         System.out.print("Observaciones: ");
                         String observaciones = scanner.nextLine();
                         DetalleDeCompra detalle = new DetalleDeCompra(id, cantidad, precioUnitario, observaciones, productoEncontrado);
+                        detalles.add(detalle);
                         montoTotal += cantidad * precioUnitario;
                     } else {
                         System.out.println("Producto no encontrado.");
                     }
                 }
 
-                SolicitudCompra solicitud = new SolicitudCompra(id, fecha, detalles, montoTotal, null, EstadoSolicitud.SOLICITADA, null);
+                SolicitudCompra solicitud = new SolicitudCompra(id, fecha, montoTotal, EstadoSolicitud.SOLICITADA);
+                for (int i = 0; i < detalles.size(); i++) {
+                    solicitud.addDetalleDeCompras(detalles.get(i));
+                }
                 solicitudes.add(solicitud);
                 System.out.println("Solicitud de compra registrada.");
             }
