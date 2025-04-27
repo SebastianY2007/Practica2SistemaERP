@@ -8,7 +8,7 @@ public class ProductoSinIva extends Producto {
     }
 
     public double calcularIva() {
-        return getPrecio() * IVA;
+        return getPrecio() + IVA;
     }
 
     @Override
