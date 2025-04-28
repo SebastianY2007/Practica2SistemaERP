@@ -73,6 +73,7 @@
                         ", Observaciones: " + detalle.getObservaciones() + ")";
             }
 
+
             return "\nID: " + id +
                     "\nFecha de Solicitud: " + formato.format(fechaSolicitud.getTime()) +
                     "\nProductos:\n" + productosIngresados +
