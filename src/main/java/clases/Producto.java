@@ -17,7 +17,6 @@ public abstract class Producto {
         this.stock = stock;
     }
 
-    // Métodos getters y setters
     public int getCodigo() { return codigo; }
     public void setCodigo(int codigo) { this.codigo = codigo; }
 

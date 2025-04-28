@@ -33,7 +33,7 @@ public class Principal {
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
-            scanner.nextLine(); // limpiar buffer
+            scanner.nextLine();
 
             if (opcion == 1) {
                 System.out.println("\n--- Registrar proveedor ---");
