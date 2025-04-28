@@ -41,7 +41,7 @@
             detalleDeCompras.add(detalleDeCompra);
         }
 
-        public List<DetalleDeCompra> getDetalleDeCompraas() {
+        public List<DetalleDeCompra> getDetalleDeCompras() {
             return detalleDeCompras;
         }
 
