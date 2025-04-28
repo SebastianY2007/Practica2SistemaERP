@@ -239,6 +239,7 @@ public class Principal {
                 System.out.println("Opción inválida. Intente de nuevo.");
             }
         }
+
         scanner.close();
     }
 }
