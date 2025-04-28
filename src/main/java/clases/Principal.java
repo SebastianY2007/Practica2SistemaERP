@@ -233,6 +233,7 @@ public class Principal {
             }
             else if (opcion == 12) {
                 System.out.println("Saliendo del sistema...");
+                break;
             }
             else {
                 System.out.println("Opción inválida. Intente de nuevo.");
