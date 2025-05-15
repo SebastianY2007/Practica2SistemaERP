@@ -1,6 +1,6 @@
-package clases;
+package ec.edu.ups.poo.clases;
 
-import enums.EstadoSolicitud;
+import ec.edu.ups.poo.enums.EstadoSolicitud;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;

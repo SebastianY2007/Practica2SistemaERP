@@ -1,4 +1,4 @@
-package clases;
+package ec.edu.ups.poo.clases;
 
 public class ProductoSinIva extends Producto {
     private static final double IVA = 0.0;
