@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 
 public class Principal {
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<Proveedor> proveedores = new ArrayList<Proveedor>();
