@@ -16,7 +16,7 @@ public abstract class Producto {
         this.categoria = categoria;
         this.stock = stock;
     }
-
+  
     public Producto(String nombreProducto) {
         this.nombre = nombreProducto;
     }
