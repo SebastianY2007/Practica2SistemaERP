@@ -16,7 +16,10 @@ public abstract class Producto {
         this.categoria = categoria;
         this.stock = stock;
     }
-
+  
+    public Producto(String nombreProducto) {
+        this.nombre = nombreProducto;
+    }
 
     public int getCodigo() { return codigo; }
     public void setCodigo(int codigo) { this.codigo = codigo; }
@@ -38,12 +41,7 @@ public abstract class Producto {
 
     @Override
     public String toString() {
-        return "Codigo: " + codigo +
-                "\tNombre: " + nombre +
-                "\tDescripcion: " + descripcion +
-                "\tPrecio: " + precio +
-                "\tCategoria: " + categoria +
-                "\tStock: " + stock;
+        return "\tNombre: " + nombre;
     }
 
     public abstract double calcularPrecioFinal();

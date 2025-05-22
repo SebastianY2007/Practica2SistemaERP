@@ -9,7 +9,7 @@ public class DetalleDeCompra {
     private String observaciones;
     private Producto producto;
 
-    public DetalleDeCompra(int codigo, int cantidad, double precioUnitario, String observaciones) {
+    public DetalleDeCompra(int codigo, int cantidad, double precioUnitario, String observaciones, Producto producto){
         this.codigo = codigo;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
