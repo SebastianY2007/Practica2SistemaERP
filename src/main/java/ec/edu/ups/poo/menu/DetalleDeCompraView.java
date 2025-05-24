@@ -71,7 +71,7 @@ public class DetalleDeCompraView {
                     }
                 };
 
-                DetalleDeCompra detalle = new DetalleDeCompra(codigo, cantidad, precio, observaciones, producto);
+                DetalleDeCompra detalle = new DetalleDeCompra(codigo, cantidad, precio, observaciones);
                 detalles.add(detalle);
 
                 taResumen.append(detalle.toString() + "\n\n");

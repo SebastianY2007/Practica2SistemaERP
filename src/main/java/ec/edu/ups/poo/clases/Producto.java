@@ -1,5 +1,7 @@
 package ec.edu.ups.poo.clases;
 
+import java.text.DecimalFormat;
+
 public abstract class Producto {
     private int codigo;
     private String nombre;
@@ -41,8 +43,15 @@ public abstract class Producto {
 
     @Override
     public String toString() {
-        return "\tNombre: " + nombre;
+        DecimalFormat df = new DecimalFormat("#.##");
+        return "Nombre: " + nombre + "\n" +
+                "Código: " + codigo + "\n" +
+                "Descripción: " + descripcion + "\n" +
+                "Precio base: $" + df.format(precio) + "\n" +
+                "Categoría: " + categoria + "\n" +
+                "Stock: " + stock;
     }
+
 
     public abstract double calcularPrecioFinal();
 }
