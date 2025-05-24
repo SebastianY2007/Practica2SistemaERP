@@ -120,7 +120,7 @@ public class Principal {
                         scanner.nextLine();
                         System.out.print("Observaciones: ");
                         String observaciones = scanner.nextLine();
-                        DetalleDeCompra detalle = new DetalleDeCompra(id, cantidad, precioUnitario, observaciones, productoEncontrado);
+                        DetalleDeCompra detalle = new DetalleDeCompra(id, cantidad, precioUnitario, observaciones);
                         detalles.add(detalle);
                         montoTotal += cantidad * precioUnitario;
                     } else {
