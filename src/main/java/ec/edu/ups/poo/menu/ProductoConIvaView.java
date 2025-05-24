@@ -87,7 +87,7 @@ public class ProductoConIvaView {
     }
 
     private void mostrarHistorial() {
-        Frame ventanaHistorial = new Frame("Historial de Productos");
+        Frame ventanaHistorial = new Frame("Productos Agregados");
         ventanaHistorial.setLayout(new FlowLayout());
 
         TextArea areaHistorial = new TextArea(15, 50);
