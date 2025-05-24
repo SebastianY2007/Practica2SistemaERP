@@ -14,5 +14,7 @@ public class App {
 
         List<Proveedor> productos = new ArrayList<>();
         new ProveedorView(productos);
+
+        new ProductoView();
     }
 }
