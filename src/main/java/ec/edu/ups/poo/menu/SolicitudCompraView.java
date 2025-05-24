@@ -33,7 +33,7 @@ public class SolicitudCompraView {
 
         frame.add(new Label("Resumen Productos / Solicitudes:"));
         taProductos = new TextArea(5, 50);
-        taProductos.setEditable(false); // El área de texto ahora es solo de lectura
+        taProductos.setEditable(false);
         frame.add(taProductos);
 
         btnAgregar = new Button("Agregar Solicitud");

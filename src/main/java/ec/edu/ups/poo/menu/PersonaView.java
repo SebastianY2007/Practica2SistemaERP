@@ -26,7 +26,7 @@ public class PersonaView {
         frame.setLayout(new FlowLayout());
 
         taResumen = new TextArea(10, 50);
-        taResumen.setEditable(false); // Área de texto inmutable
+        taResumen.setEditable(false);
         frame.add(new Label("Personas registradas:"));
         frame.add(taResumen);
 
@@ -72,7 +72,7 @@ public class PersonaView {
         ventana.add(txtCorreo);
 
         Button btnGuardar = new Button("Guardar Persona");
-        ventana.add(new Label()); // Espacio vacío
+        ventana.add(new Label());
         ventana.add(btnGuardar);
 
         btnGuardar.addActionListener(e -> {
@@ -100,7 +100,7 @@ public class PersonaView {
     }
 
     private void mostrarPersonasRegistradas() {
-        taResumen.setText(""); // Limpiar el área
+        taResumen.setText("");
         if (personas.isEmpty()) {
             taResumen.append("No hay personas registradas.\n");
         } else {
