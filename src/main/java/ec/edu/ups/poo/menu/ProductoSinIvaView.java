@@ -44,7 +44,7 @@ public class ProductoSinIvaView {
     }
 
     private void mostrarVentanaCalculo() {
-        Frame ventana = new Frame("Cálculo de Precio sin IVA");
+        Frame ventana = new Frame("Precio sin IVA");
         ventana.setLayout(new FlowLayout());
 
         TextField txtPrecio = new TextField(10);
