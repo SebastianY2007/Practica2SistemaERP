@@ -1,16 +1,16 @@
 package ec.edu.ups.poo.clases;
 
+import java.util.Objects;
+
 public class Persona {
     private String nombre;
     private String apellido;
-    private String identificacion;
     private String telefono;
     private String correoElectronico;
 
-    public Persona(String nombre, String apellido, String identificacion, String telefono, String correoElectronico) {
+    public Persona(String nombre, String apellido, String telefono, String correoElectronico) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.identificacion = identificacion;
         this.telefono = telefono;
         this.correoElectronico = correoElectronico;
     }
@@ -31,14 +31,6 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
-    }
-
     public String getTelefono() {
         return telefono;
     }
@@ -48,7 +40,7 @@ public class Persona {
     }
 
     public String getCorreoElectronico() {
-        return correoElectronico;
+        return correoElectronico != null ? correoElectronico : "No especificado";
     }
 
     public void setCorreoElectronico(String correoElectronico) {
@@ -56,11 +48,22 @@ public class Persona {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return Objects.equals(nombre, persona.nombre) && Objects.equals(apellido, persona.apellido) && Objects.equals(telefono, persona.telefono) && Objects.equals(correoElectronico, persona.correoElectronico);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, apellido, telefono, correoElectronico);
+    }
+
+    @Override
     public String toString() {
         return "Nombre: " + nombre +
                 "\nApellido: " + apellido +
-                "\nIdentificacion: " + identificacion +
-                "\nTelefono:" + telefono +
-                "\nCorreo Electronico: " + correoElectronico;
+                "\nTeléfono: " + telefono +
+                "\nCorreo Electrónico: " + getCorreoElectronico();
     }
 }
