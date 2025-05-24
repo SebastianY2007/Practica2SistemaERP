@@ -10,7 +10,7 @@ import java.util.List;
 public class PersonaView {
 
     private Frame frame;
-    private TextArea taResumen;
+    private TextArea Resumen;
     private Button btnAgregarPersona;
     private Button btnMostrarPersonas;
 
@@ -25,10 +25,10 @@ public class PersonaView {
         frame = new Frame("Gestión de Personas");
         frame.setLayout(new FlowLayout());
 
-        taResumen = new TextArea(10, 50);
-        taResumen.setEditable(false);
+        Resumen = new TextArea(10, 50);
+        Resumen.setEditable(false);
         frame.add(new Label("Personas registradas:"));
-        frame.add(taResumen);
+        frame.add(Resumen);
 
         btnAgregarPersona = new Button("Agregar Persona");
         btnMostrarPersonas = new Button("Mostrar Personas");
@@ -87,10 +87,10 @@ public class PersonaView {
 
                 Persona persona = new Persona(nombre, apellido, identificacion, telefono, correo);
                 personas.add(persona);
-                taResumen.append("Persona registrada:\n" + persona + "\n\n");
+                Resumen.append("Persona registrada:\n" + persona + "\n\n");
                 ventana.dispose();
             } else {
-                taResumen.append("Error: Todos los campos deben estar completos.\n");
+                Resumen.append("Error: Todos los campos deben estar completos.\n");
             }
         });
 
@@ -100,12 +100,12 @@ public class PersonaView {
     }
 
     private void mostrarPersonasRegistradas() {
-        taResumen.setText("");
+        Resumen.setText("");
         if (personas.isEmpty()) {
-            taResumen.append("No hay personas registradas.\n");
+            Resumen.append("No hay personas registradas.\n");
         } else {
             for (Persona p : personas) {
-                taResumen.append(p + "\n---------------------\n");
+                Resumen.append(p + "\n-------------------\n");
             }
         }
     }
