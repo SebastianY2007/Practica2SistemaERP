@@ -190,3 +190,5 @@ public class SolicitudCompraView {
         ventana.setVisible(true);
     }
 }
+
+
