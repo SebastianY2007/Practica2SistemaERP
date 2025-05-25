@@ -12,6 +12,7 @@ public class ProductoConIvaView {
     private Frame frame;
     private Button btnCalcularTodo;
     private Button btnVerHistorial;
+    private Button btnLimpiarHistorial;
     private List<ProductoConIva> productos;
 
     public ProductoConIvaView() {
@@ -25,14 +26,17 @@ public class ProductoConIvaView {
 
         btnCalcularTodo = new Button("Calcular");
         btnVerHistorial = new Button("Ver Historial");
+        btnLimpiarHistorial = new Button("Limpiar Historial");
 
         frame.add(btnCalcularTodo);
         frame.add(btnVerHistorial);
+        frame.add(btnLimpiarHistorial);
 
         btnCalcularTodo.addActionListener(e -> mostrarVentanaCalculoCompleto());
         btnVerHistorial.addActionListener(e -> mostrarHistorial());
+        btnLimpiarHistorial.addActionListener(e -> limpiarHistorial());
 
-        frame.setSize(300, 150);
+        frame.setSize(400, 150);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -68,7 +72,7 @@ public class ProductoConIvaView {
                 productos.add(producto);
 
                 resultado.setText(
-                        "Precio original: $" + String.format("%.2f", precio) +"\nIVA (15%): $" + String.format("%.2f", iva) + "\nPrecio con IVA: $" + String.format("%.2f", precioFinal)
+                        "Precio original: $" + String.format("%.2f", precio) + "\nIVA (15%): $" + String.format("%.2f", iva) + "\nPrecio con IVA: $" + String.format("%.2f", precioFinal)
                 );
             } catch (NumberFormatException ex) {
                 resultado.setText("Error: Precio inválido.");
@@ -87,7 +91,7 @@ public class ProductoConIvaView {
     }
 
     private void mostrarHistorial() {
-        Frame ventanaHistorial = new Frame("Historial de Productos");
+        Frame ventanaHistorial = new Frame("Productos Agregados");
         ventanaHistorial.setLayout(new FlowLayout());
 
         TextArea areaHistorial = new TextArea(15, 50);
@@ -98,7 +102,13 @@ public class ProductoConIvaView {
         } else {
             StringBuilder sb = new StringBuilder();
             for (ProductoConIva p : productos) {
-                sb.append("Precio original: $").append(String.format("%.2f", p.getPrecio())).append(" | IVA: $").append(String.format("%.2f", p.calcularIva())).append(" | Total: $").append(String.format("%.2f", p.calcularPrecioFinal())).append("\n");
+                sb.append("Precio original: $")
+                        .append(String.format("%.2f", p.getPrecio()))
+                        .append(" | IVA: $")
+                        .append(String.format("%.2f", p.calcularIva()))
+                        .append(" | Total: $")
+                        .append(String.format("%.2f", p.calcularPrecioFinal()))
+                        .append("\n");
             }
             areaHistorial.setText(sb.toString());
         }
@@ -114,6 +124,29 @@ public class ProductoConIvaView {
             }
         });
     }
+
+    private void limpiarHistorial() {
+        productos.clear();
+
+        Frame ventanaLimpieza = new Frame("Limpieza de Historial");
+        ventanaLimpieza.setLayout(new FlowLayout());
+
+        Label mensaje = new Label("El historial se limpio correctamente.");
+        Button btnCerrar = new Button("Cerrar");
+
+        btnCerrar.addActionListener(e -> ventanaLimpieza.dispose());
+
+        ventanaLimpieza.add(mensaje);
+        ventanaLimpieza.add(btnCerrar);
+
+        ventanaLimpieza.setSize(300, 100);
+        ventanaLimpieza.setLocationRelativeTo(null);
+        ventanaLimpieza.setVisible(true);
+
+        ventanaLimpieza.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ventanaLimpieza.dispose();
+            }
+        });
+    }
 }
-
-
