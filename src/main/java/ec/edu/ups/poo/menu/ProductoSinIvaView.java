@@ -73,9 +73,7 @@ public class ProductoSinIvaView {
                 productosSinIva.add(producto);
 
                 resultado.setText(
-                        "Precio original: $" + String.format("%.2f", precio) +
-                                "\nIVA (0%): $" + String.format("%.2f", iva) +
-                                "\nPrecio con IVA: $" + String.format("%.2f", precioFinal)
+                        "Precio original: $" + String.format("%.2f", precio) + "\nIVA (0%): $" + String.format("%.2f", iva) + "\nPrecio con IVA: $" + String.format("%.2f", precioFinal)
                 );
             } catch (NumberFormatException ex) {
                 resultado.setText("Error: Precio inválido.");
