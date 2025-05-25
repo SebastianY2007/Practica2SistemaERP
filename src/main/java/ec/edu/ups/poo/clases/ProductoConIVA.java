@@ -11,6 +11,10 @@ public class ProductoConIVA extends Producto {
         return getPrecio() * 1.12; // 12% IVA
     }
 
+    public double calcularIva() {
+        return getPrecio() * 0.12;
+    }
+
     @Override
     public String toString() {
         return super.toString();

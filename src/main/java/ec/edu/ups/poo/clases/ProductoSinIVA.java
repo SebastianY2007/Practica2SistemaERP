@@ -6,6 +6,10 @@ public class ProductoSinIVA extends Producto {
         super(codigo, nombre, descripcion, precio, categoria, stock);
     }
 
+    public double calcularIva() {
+        return getPrecio();
+    }
+
     @Override
     public double calcularPrecioFinal() {
         return getPrecio(); // Sin IVA

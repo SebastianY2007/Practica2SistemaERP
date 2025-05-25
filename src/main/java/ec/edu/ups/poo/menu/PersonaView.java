@@ -85,7 +85,7 @@ public class PersonaView {
             if (!nombre.isEmpty() && !apellido.isEmpty() && !identificacion.isEmpty()
                     && !telefono.isEmpty() && !correo.isEmpty()) {
 
-                Persona persona = new Persona(nombre, apellido, identificacion, telefono, correo);
+                Persona persona = new Persona(nombre, apellido, identificacion, telefono);
                 personas.add(persona);
                 Resumen.append("Persona registrada:\n" + persona + "\n\n");
                 ventana.dispose();

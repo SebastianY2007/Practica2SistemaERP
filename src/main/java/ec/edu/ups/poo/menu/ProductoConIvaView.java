@@ -1,7 +1,6 @@
 package ec.edu.ups.poo.menu;
 
-import ec.edu.ups.poo.clases.ProductoConIva;
-
+import ec.edu.ups.poo.clases.ProductoConIVA;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ public class ProductoConIvaView {
     private Frame frame;
     private Button btnCalcularTodo;
     private Button btnVerHistorial;
-    private List<ProductoConIva> productos;
+    private List<ProductoConIVA> productos;
 
     public ProductoConIvaView() {
         productos = new ArrayList<>();
@@ -60,7 +59,7 @@ public class ProductoConIvaView {
         btnCalcular.addActionListener(e -> {
             try {
                 double precio = Double.parseDouble(txtPrecio.getText().trim());
-                ProductoConIva producto = new ProductoConIva(1, "Genérico", "Producto sin detalles", precio, "General", 10);
+                ProductoConIVA producto = new ProductoConIVA(1, "Genérico", "Producto sin detalles", precio, "General", 10);
 
                 double iva = producto.calcularIva();
                 double precioFinal = producto.calcularPrecioFinal();
@@ -97,7 +96,7 @@ public class ProductoConIvaView {
             areaHistorial.setText("No hay productos registrados.");
         } else {
             StringBuilder sb = new StringBuilder();
-            for (ProductoConIva p : productos) {
+            for (ProductoConIVA p : productos) {
                 sb.append("Precio original: $").append(String.format("%.2f", p.getPrecio())).append(" | IVA: $").append(String.format("%.2f", p.calcularIva())).append(" | Total: $").append(String.format("%.2f", p.calcularPrecioFinal())).append("\n");
             }
             areaHistorial.setText(sb.toString());
