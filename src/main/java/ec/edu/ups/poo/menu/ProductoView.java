@@ -1,8 +1,8 @@
 package ec.edu.ups.poo.menu;
 
 import ec.edu.ups.poo.clases.Producto;
-import ec.edu.ups.poo.clases.ProductoConIVA;
-import ec.edu.ups.poo.clases.ProductoSinIVA;
+import ec.edu.ups.poo.clases.ProductoConIva;
+import ec.edu.ups.poo.clases.ProductoSinIva;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -111,10 +111,10 @@ public class ProductoView {
             Producto producto;
             String tipoProducto;
             if (cbConIVA.getState()) {
-                producto = new ProductoConIVA(codigo, nombre, descripcion, precio, categoria, stock);
+                producto = new ProductoConIva(codigo, nombre, descripcion, precio, categoria, stock);
                 tipoProducto = "Con IVA";
             } else {
-                producto = new ProductoSinIVA(codigo, nombre, descripcion, precio, categoria, stock);
+                producto = new ProductoSinIva(codigo, nombre, descripcion, precio, categoria, stock);
                 tipoProducto = "Sin IVA";
             }
 
@@ -165,7 +165,7 @@ public class ProductoView {
         StringBuilder lista = new StringBuilder("LISTA DE PRODUCTOS\n\n");
 
         for (Producto p : productos) {
-            lista.append("--------------------------------\n").append(p.toString()).append("\nTipo: ").append(p instanceof ProductoConIVA ? "Con IVA" : "Sin IVA").append("\nPrecio final: $").append(df.format(p.calcularPrecioFinal())).append("\n\n");
+            lista.append("--------------------------------\n").append(p.toString()).append("\nTipo: ").append(p instanceof ProductoConIva ? "Con IVA" : "Sin IVA").append("\nPrecio final: $").append(df.format(p.calcularPrecioFinal())).append("\n\n");
         }
 
         Frame frameLista = new Frame("Lista de Productos");
