@@ -67,7 +67,6 @@ public class SolicitudCompraView {
         frame.setSize(600, 300);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setBackground(Color.DARK_GRAY);
     }
 
     private void mostrarVentanaAgregarSolicitud() {
