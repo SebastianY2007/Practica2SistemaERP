@@ -12,6 +12,7 @@ public class ProductoSinIvaView {
     private Frame frame;
     private Button btnCalcular;
     private Button btnVerHistorial;
+    private Button btnLimpiarHistorial;
     private List<ProductoSinIva> productosSinIva;
 
     public ProductoSinIvaView() {
@@ -25,14 +26,17 @@ public class ProductoSinIvaView {
 
         btnCalcular = new Button("Calcular Precio");
         btnVerHistorial = new Button("Ver Historial");
+        btnLimpiarHistorial = new Button("Limpiar Historial");
 
         frame.add(btnCalcular);
         frame.add(btnVerHistorial);
+        frame.add(btnLimpiarHistorial);
 
         btnCalcular.addActionListener(e -> mostrarVentanaCalculo());
         btnVerHistorial.addActionListener(e -> mostrarHistorial());
+        btnLimpiarHistorial.addActionListener(e -> limpiarHistorial());
 
-        frame.setSize(350, 150);
+        frame.setSize(400, 150);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -44,7 +48,7 @@ public class ProductoSinIvaView {
     }
 
     private void mostrarVentanaCalculo() {
-        Frame ventana = new Frame("Cálculo de Precio sin IVA");
+        Frame ventana = new Frame("Precio sin IVA");
         ventana.setLayout(new FlowLayout());
 
         TextField txtPrecio = new TextField(10);
@@ -69,9 +73,7 @@ public class ProductoSinIvaView {
                 productosSinIva.add(producto);
 
                 resultado.setText(
-                        "Precio original: $" + String.format("%.2f", precio) +
-                                "\nIVA (0%): $" + String.format("%.2f", iva) +
-                                "\nPrecio con IVA: $" + String.format("%.2f", precioFinal)
+                        "Precio original: $" + String.format("%.2f", precio) + "\nIVA (0%): $" + String.format("%.2f", iva) + "\nPrecio con IVA: $" + String.format("%.2f", precioFinal)
                 );
             } catch (NumberFormatException ex) {
                 resultado.setText("Error: Precio inválido.");
@@ -120,6 +122,29 @@ public class ProductoSinIvaView {
             }
         });
     }
+
+    private void limpiarHistorial() {
+        productosSinIva.clear();
+
+        Frame ventanaMensaje = new Frame("Historial limpiado");
+        ventanaMensaje.setLayout(new FlowLayout());
+
+        Label mensaje = new Label("El historial se limpio correctamente");
+        Button btnCerrar = new Button("Cerrar");
+
+        btnCerrar.addActionListener(e -> ventanaMensaje.dispose());
+
+        ventanaMensaje.add(mensaje);
+        ventanaMensaje.add(btnCerrar);
+
+        ventanaMensaje.setSize(300, 100);
+        ventanaMensaje.setLocationRelativeTo(frame);
+        ventanaMensaje.setVisible(true);
+
+        ventanaMensaje.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ventanaMensaje.dispose();
+            }
+        });
+    }
 }
-
-
