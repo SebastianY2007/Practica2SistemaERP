@@ -90,7 +90,7 @@ public class PersonaView {
                 Resumen.append("Persona registrada:\n" + persona + "\n\n");
                 ventana.dispose();
             } else {
-                Resumen.append("Error: Todos los campos deben estar completos.\n");
+                Resumen.append("Error \n");
             }
         });
 
