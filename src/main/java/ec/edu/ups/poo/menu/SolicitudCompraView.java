@@ -53,15 +53,7 @@ public class SolicitudCompraView {
         btnAgregar.addActionListener(e -> mostrarVentanaAgregarSolicitud());
         btnAgregarProducto.addActionListener(e -> mostrarVentanaAgregarProducto());
         btnCambiarEstado.addActionListener(e -> mostrarVentanaCambiarEstado());
-
-        btnVerEstado.addActionListener(e -> {
-            if (!solicitudes.isEmpty()) {
-                SolicitudCompra ultima = solicitudes.get(solicitudes.size() - 1);
-                taProductos.append("Estado actual de la solicitud ID " + ultima.getId() + ": " + ultima.getEstadoSolicitud() + "\n");
-            } else {
-                taProductos.append("No hay solicitudes registradas.\n");
-            }
-        });
+        btnVerEstado.addActionListener(e -> mostrarVentanaVerEstado());
 
         btnLimpiar.addActionListener(e -> taProductos.setText(""));
         btnSalir.addActionListener(e -> frame.dispose());
@@ -83,12 +75,9 @@ public class SolicitudCompraView {
         ventana.setLayout(new FlowLayout());
 
         TextField txtId = new TextField(10);
-        TextField txtMonto = new TextField(10);
 
         ventana.add(new Label("ID Solicitud:"));
         ventana.add(txtId);
-        ventana.add(new Label("Monto Total:"));
-        ventana.add(txtMonto);
 
         Button btnGuardar = new Button("Guardar");
         ventana.add(btnGuardar);
@@ -96,7 +85,7 @@ public class SolicitudCompraView {
         btnGuardar.addActionListener(e -> {
             try {
                 int id = Integer.parseInt(txtId.getText().trim());
-                double monto = Double.parseDouble(txtMonto.getText().trim());
+                double monto = 0.0;
                 GregorianCalendar fecha = new GregorianCalendar();
 
                 SolicitudCompra solicitud = new SolicitudCompra(id, fecha, monto, EstadoSolicitud.SOLICITADA);
@@ -108,7 +97,13 @@ public class SolicitudCompraView {
             }
         });
 
-        ventana.setSize(300, 150);
+        ventana.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ventana.dispose();
+            }
+        });
+
+        ventana.setSize(300, 120);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
@@ -121,6 +116,13 @@ public class SolicitudCompraView {
 
         Frame ventana = new Frame("Agregar Producto a Solicitud");
         ventana.setLayout(new FlowLayout());
+
+        ventana.add(new Label("Selecciona la Solicitud por ID:"));
+        Choice choice = new Choice();
+        for (SolicitudCompra s : solicitudes) {
+            choice.add(String.valueOf(s.getId()));
+        }
+        ventana.add(choice);
 
         TextField txtProductoId = new TextField(10);
         TextField txtCantidad = new TextField(10);
@@ -135,22 +137,33 @@ public class SolicitudCompraView {
 
         btnGuardar.addActionListener(e -> {
             try {
+                int solicitudId = Integer.parseInt(choice.getSelectedItem());
                 int productoId = Integer.parseInt(txtProductoId.getText().trim());
                 int cantidad = Integer.parseInt(txtCantidad.getText().trim());
-                double precio = 10.0; // Precio fijo por simplicidad
+                double precio = 10.0;
 
-                SolicitudCompra ultima = solicitudes.get(solicitudes.size() - 1);
-                DetalleDeCompra detalle = new DetalleDeCompra(productoId, cantidad, precio, "Ninguna");
-                ultima.addDetalleDeCompras(detalle);
-
-                taProductos.append("Producto agregado a solicitud ID " + ultima.getId() + ": Producto ID " + productoId + ", Cantidad " + cantidad + "\n");
+                for (SolicitudCompra s : solicitudes) {
+                    if (s.getId() == solicitudId) {
+                        DetalleDeCompra detalle = new DetalleDeCompra(productoId, cantidad, precio, "Ninguna");
+                        s.addDetalleDeCompras(detalle);
+                        s.setMontoTotal(s.getMontoTotal() + (cantidad * precio));
+                        taProductos.append("Producto agregado a solicitud ID " + solicitudId + ": Producto ID " + productoId + ", Cantidad " + cantidad + "\n");
+                        break;
+                    }
+                }
                 ventana.dispose();
             } catch (NumberFormatException ex) {
                 taProductos.append("Error: Datos inválidos para producto.\n");
             }
         });
 
-        ventana.setSize(300, 150);
+        ventana.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ventana.dispose();
+            }
+        });
+
+        ventana.setSize(320, 200);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
@@ -164,25 +177,90 @@ public class SolicitudCompraView {
         Frame ventana = new Frame("Cambiar Estado de Solicitud");
         ventana.setLayout(new FlowLayout());
 
+        ventana.add(new Label("Seleccione una Solicitud por ID:"));
+
+        Choice choice = new Choice();
+        for (SolicitudCompra s : solicitudes) {
+            choice.add(String.valueOf(s.getId()));
+        }
+        ventana.add(choice);
+
         Button btnAprobar = new Button("Aprobar");
         Button btnRechazar = new Button("Rechazar");
 
-        ventana.add(new Label("Selecciona una acción para la última solicitud:"));
         ventana.add(btnAprobar);
         ventana.add(btnRechazar);
 
         btnAprobar.addActionListener(e -> {
-            SolicitudCompra ultima = solicitudes.get(solicitudes.size() - 1);
-            ultima.setEstadoSolicitud(EstadoSolicitud.APROBADA);
-            taProductos.append("Solicitud ID " + ultima.getId() + " APROBADA.\n");
+            int id = Integer.parseInt(choice.getSelectedItem());
+            for (SolicitudCompra s : solicitudes) {
+                if (s.getId() == id) {
+                    s.setEstadoSolicitud(EstadoSolicitud.APROBADA);
+                    taProductos.append("Solicitud ID " + id + " APROBADA.\n");
+                    break;
+                }
+            }
             ventana.dispose();
         });
 
         btnRechazar.addActionListener(e -> {
-            SolicitudCompra ultima = solicitudes.get(solicitudes.size() - 1);
-            ultima.setEstadoSolicitud(EstadoSolicitud.RECHAZADA);
-            taProductos.append("Solicitud ID " + ultima.getId() + " RECHAZADA.\n");
+            int id = Integer.parseInt(choice.getSelectedItem());
+            for (SolicitudCompra s : solicitudes) {
+                if (s.getId() == id) {
+                    s.setEstadoSolicitud(EstadoSolicitud.RECHAZADA);
+                    taProductos.append("Solicitud ID " + id + " RECHAZADA.\n");
+                    break;
+                }
+            }
             ventana.dispose();
+        });
+
+        ventana.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ventana.dispose();
+            }
+        });
+
+        ventana.setSize(300, 200);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+    }
+
+    private void mostrarVentanaVerEstado() {
+        if (solicitudes.isEmpty()) {
+            taProductos.append("No hay solicitudes registradas.\n");
+            return;
+        }
+
+        Frame ventana = new Frame("Ver Estado de Solicitud");
+        ventana.setLayout(new FlowLayout());
+
+        ventana.add(new Label("Seleccione una Solicitud por ID:"));
+
+        Choice choice = new Choice();
+        for (SolicitudCompra s : solicitudes) {
+            choice.add(String.valueOf(s.getId()));
+        }
+        ventana.add(choice);
+
+        Button btnVer = new Button("Ver Estado");
+        ventana.add(btnVer);
+
+        btnVer.addActionListener(e -> {
+            int id = Integer.parseInt(choice.getSelectedItem());
+            for (SolicitudCompra s : solicitudes) {
+                if (s.getId() == id) {
+                    taProductos.append("Estado actual de la solicitud ID " + id + ": " + s.getEstadoSolicitud() + "\n");
+                    break;
+                }
+            }
+            ventana.dispose();
+        });
+
+        ventana.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ventana.dispose();
+            }
         });
 
         ventana.setSize(300, 150);
@@ -190,5 +268,3 @@ public class SolicitudCompraView {
         ventana.setVisible(true);
     }
 }
-
-
