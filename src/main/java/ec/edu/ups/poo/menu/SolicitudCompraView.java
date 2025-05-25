@@ -137,7 +137,7 @@ public class SolicitudCompraView {
             try {
                 int productoId = Integer.parseInt(txtProductoId.getText().trim());
                 int cantidad = Integer.parseInt(txtCantidad.getText().trim());
-                double precio = 10.0; // Precio fijo por simplicidad
+                double precio = 10.0;
 
                 SolicitudCompra ultima = solicitudes.get(solicitudes.size() - 1);
                 DetalleDeCompra detalle = new DetalleDeCompra(productoId, cantidad, precio, "Ninguna");
