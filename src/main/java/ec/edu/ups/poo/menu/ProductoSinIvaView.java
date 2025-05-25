@@ -12,6 +12,7 @@ public class ProductoSinIvaView {
     private Frame frame;
     private Button btnCalcular;
     private Button btnVerHistorial;
+    private Button btnLimpiarHistorial;
     private List<ProductoSinIva> productosSinIva;
 
     public ProductoSinIvaView() {
@@ -25,14 +26,17 @@ public class ProductoSinIvaView {
 
         btnCalcular = new Button("Calcular Precio");
         btnVerHistorial = new Button("Ver Historial");
+        btnLimpiarHistorial = new Button("Limpiar Historial");
 
         frame.add(btnCalcular);
         frame.add(btnVerHistorial);
+        frame.add(btnLimpiarHistorial);
 
         btnCalcular.addActionListener(e -> mostrarVentanaCalculo());
         btnVerHistorial.addActionListener(e -> mostrarHistorial());
+        btnLimpiarHistorial.addActionListener(e -> limpiarHistorial());
 
-        frame.setSize(350, 150);
+        frame.setSize(400, 150);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
@@ -117,6 +121,31 @@ public class ProductoSinIvaView {
         ventanaHistorial.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 ventanaHistorial.dispose();
+            }
+        });
+    }
+
+    private void limpiarHistorial() {
+        productosSinIva.clear();
+
+        Frame ventanaMensaje = new Frame("Historial limpiado");
+        ventanaMensaje.setLayout(new FlowLayout());
+
+        Label mensaje = new Label("El historial se limpio correctamente");
+        Button btnCerrar = new Button("Cerrar");
+
+        btnCerrar.addActionListener(e -> ventanaMensaje.dispose());
+
+        ventanaMensaje.add(mensaje);
+        ventanaMensaje.add(btnCerrar);
+
+        ventanaMensaje.setSize(300, 100);
+        ventanaMensaje.setLocationRelativeTo(frame);
+        ventanaMensaje.setVisible(true);
+
+        ventanaMensaje.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                ventanaMensaje.dispose();
             }
         });
     }
