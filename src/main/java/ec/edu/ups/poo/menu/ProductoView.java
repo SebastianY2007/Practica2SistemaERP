@@ -64,7 +64,7 @@ public class ProductoView {
         panelIVA.add(cbSinIVA);
         panelCampos.add(panelIVA);
 
-        Panel panelBotones = new Panel(new GridLayout(1, 5, 5, 5)); // Cambiado a 5 columnas
+        Panel panelBotones = new Panel(new GridLayout(1, 5, 5, 5));
         Button btnAgregar = new Button("Agregar");
         Button btnLimpiar = new Button("Limpiar");
         Button btnMostrar = new Button("Mostrar");
